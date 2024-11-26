@@ -18,12 +18,15 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-sequelize = new Sequelize('postgres://student:ptudw@123@dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com:5432/sequelize_exercise_foxh', {
+
+sequelize = new Sequelize('sequelize_exercise_foxh', 'student', 'ptudw@123', {
+  host: 'dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com',
   dialect: 'postgres',
+  dialectModule: require('pg'),
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false,
+      rejectUnauthorized: true, // Xác thực SSL
     },
   },
 });
