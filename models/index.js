@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-const sequelize = new Sequelize('postgres://student:ptudw@123@dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com:5432/sequelize_exercise_foxh', {
+let sequelize = new Sequelize('postgres://student:ptudw@123@dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com:5432/sequelize_exercise_foxh', {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
