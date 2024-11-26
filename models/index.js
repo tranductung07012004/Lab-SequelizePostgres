@@ -9,7 +9,16 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-let sequelize = new Sequelize('postgres://student:ptudw@123@dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com:5432/sequelize_exercise_foxh', {
+
+
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+
+sequelize = new Sequelize('postgres://student:ptudw@123@dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com:5432/sequelize_exercise_foxh', {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
@@ -18,13 +27,6 @@ let sequelize = new Sequelize('postgres://student:ptudw@123@dpg-csvb7laj1k6c73c3
     },
   },
 });
-
-//let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
 
 fs
   .readdirSync(__dirname)
