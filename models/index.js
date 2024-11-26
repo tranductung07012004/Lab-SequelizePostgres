@@ -19,18 +19,6 @@ if (config.use_env_variable) {
 }
 
 
-sequelize = new Sequelize('sequelize_exercise_foxh', 'student', 'ptudw@123', {
-  host: 'dpg-csvb7laj1k6c73c3jk20-a.singapore-postgres.render.com',
-  dialect: 'postgres',
-  // dialectModule: require('pg'),
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false, // Xác thực SSL
-    },
-  },
-});
-
 fs
   .readdirSync(__dirname)
   .filter(file => {
